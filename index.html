@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUDIFAST Estudio Contable</title>
+<meta name="description" content="AUDIFAST Estudio Contable - Servicios contables, tributarios y empresariales a nivel nacional.">
+<style>
+:root{
+  --navy:#0a2a66;
+  --navy-2:#163f86;
+  --sky:#45b8ff;
+  --green:#25D366;
+  --bg:#f5f8fc;
+  --card:#ffffff;
+  --text:#162335;
+  --muted:#5c6777;
+  --line:#dce6f2;
+  --shadow:0 18px 40px rgba(7,28,66,.12);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top right, rgba(69,184,255,.08), transparent 28%),
+    linear-gradient(180deg,#f9fbff,#f5f8fc 42%,#eef4fb 100%);
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url("logo-audifast.png") center 120px / 360px auto no-repeat;
+  opacity:.05;
+  pointer-events:none;
+  z-index:0;
+}
+.topbar, header, main, footer, .floating{position:relative; z-index:1}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(10,42,102,.08);
+}
+.nav-wrap{
+  max-width:1220px;
+  margin:auto;
+  padding:10px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+.brand img{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 8px 20px rgba(10,42,102,.10);
+}
+.brand-copy{
+  min-width:0;
+}
+.brand h1{
+  margin:0;
+  color:var(--navy);
+  font-size:1.2rem;
+  line-height:1.1;
+  letter-spacing:.01em;
+}
+.brand p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:.88rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+nav a{
+  text-decoration:none;
+  color:var(--navy);
+  font-weight:700;
+  padding:10px 12px;
+  border-radius:999px;
+  transition:.25s ease;
+  font-size:.94rem;
+}
+nav a:hover{
+  background:rgba(22,63,134,.08);
+  color:var(--navy-2);
+  transform:translateY(-1px);
+}
+.menu-toggle{
+  display:none;
+  background:var(--navy);
+  color:#fff;
+  border:none;
+  padding:10px 12px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+.hero{
+  min-height:84vh;
+  display:grid;
+  place-items:center;
+  padding:48px 20px 70px;
+  color:#fff;
+  background:
+    linear-gradient(rgba(7,18,38,.66), rgba(7,18,38,.80)),
+    url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+}
+.hero-inner{
+  max-width:1220px;
+  width:100%;
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:30px;
+  align-items:center;
+}
+.badge{
+  display:inline-block;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  padding:9px 15px;
+  border-radius:999px;
+  font-weight:700;
+  margin-bottom:16px;
+  font-size:.9rem;
+}
+.hero h2{
+  margin:0 0 16px;
+  font-size:clamp(2.2rem,5vw,4.7rem);
+  line-height:1.03;
+}
+.hero p{
+  margin:0;
+  max-width:760px;
+  color:#edf5ff;
+  line-height:1.85;
+  font-size:1.03rem;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-decoration:none;
+  padding:14px 20px;
+  border-radius:15px;
+  font-weight:700;
+  transition:.25s ease;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--sky),#9edfff);
+  color:#072443;
+  box-shadow:0 14px 30px rgba(69,184,255,.26);
+}
+.btn-secondary{
+  color:#fff;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.06);
+}
+.btn:hover{transform:translateY(-2px)}
+.hero-card{
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+  border-radius:26px;
+  padding:24px;
+  box-shadow:0 18px 44px rgba(0,0,0,.18);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.hero-stat{
+  background:rgba(255,255,255,.10);
+  border-radius:18px;
+  padding:16px;
+  transition:.25s ease;
+}
+.hero-stat:hover{
+  transform:translateY(-3px);
+  background:rgba(255,255,255,.16);
+}
+.hero-stat strong{
+  display:block;
+  margin-bottom:6px;
+  font-size:1.08rem;
+}
+.audio-strip{
+  max-width:1220px;
+  margin:-28px auto 0;
+  padding:0 20px;
+  position:relative;
+  z-index:2;
+}
+.audio-card{
+  background:#fff;
+  box-shadow:var(--shadow);
+  border-radius:20px;
+  padding:18px 20px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.audio-card h3{
+  margin:0;
+  color:var(--navy);
+  font-size:1.12rem;
+}
+.audio-card p{
+  margin:6px 0 0;
+  color:var(--muted);
+}
+audio{
+  width:min(100%,420px);
+}
+main section{
+  max-width:1220px;
+  margin:auto;
+  padding:78px 20px;
+}
+.section-head{
+  max-width:920px;
+  margin:0 0 28px;
+}
+.kicker{
+  color:var(--navy-2);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:800;
+  font-size:.82rem;
+}
+.section-head h3{
+  margin:10px 0 14px;
+  color:var(--navy);
+  font-size:clamp(1.9rem,4vw,3.1rem);
+}
+.section-head p{
+  color:var(--muted);
+  line-height:1.88;
+}
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:26px;
+  align-items:center;
+}
+.panel{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px;
+  border:1px solid rgba(10,42,102,.04);
+}
+.panel img{
+  width:100%;
+  display:block;
+  border-radius:18px;
+}
+.highlights{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:20px;
+}
+.highlight{
+  background:linear-gradient(180deg,#f3f8ff,#eef5ff);
+  border:1px solid rgba(22,63,134,.08);
+  border-radius:16px;
+  padding:15px;
+}
+.highlight strong{color:var(--navy)}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+.service-card{
+  background:#fff;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:.3s ease;
+}
+.service-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 24px 46px rgba(7,28,66,.16);
+}
+.service-card img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  display:block;
+}
+.service-body{
+  padding:20px;
+}
+.service-body h4{
+  margin:0 0 10px;
+  color:var(--navy);
+  font-size:1.05rem;
+}
+.service-body p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.75;
+}
+.socials{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:18px 0;
+}
+.socials a{
+  text-decoration:none;
+  color:#fff;
+  padding:12px 16px;
+  border-radius:14px;
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition:.25s ease;
+}
+.socials a:hover{transform:translateY(-2px)}
+.fb{background:#1877f2}
+.ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)}
+.tt{background:#111}
+.wa{background:#25D366;color:#093318}
+.icon{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  display:grid;
+  place-items:center;
+  font-size:.82rem;
+}
+.contact-list{
+  display:grid;
+  gap:14px;
+}
+.contact-item{
+  background:#eef5ff;
+  border-radius:16px;
+  padding:15px 16px;
+}
+.contact-item strong{
+  display:block;
+  color:var(--navy);
+  margin-bottom:5px;
+}
+iframe.map{
+  width:100%;
+  height:320px;
+  border:0;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  margin-top:10px;
+}
+form{
+  display:grid;
+  gap:14px;
+}
+input, textarea{
+  width:100%;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#fbfdff;
+  font:inherit;
+}
+textarea{
+  min-height:150px;
+  resize:vertical;
+}
+button.submit{
+  border:none;
+  cursor:pointer;
+}
+footer{
+  background:linear-gradient(180deg,#0d2554,#081833);
+  color:#d7e5ff;
+  padding:34px 20px;
+  margin-top:26px;
+}
+.footer-wrap{
+  max-width:1220px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.floating{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  display:grid;
+  gap:10px;
+  z-index:90;
+}
+.floating a{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:0 14px 26px rgba(0,0,0,.18);
+}
+.float-wa{background:#25D366;color:#093318}
+.float-top{background:var(--navy);color:#fff}
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:.7s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+@media (max-width: 980px){
+  .hero-inner, .grid-2{grid-template-columns:1fr}
+}
+@media (max-width: 768px){
+  .nav-wrap{
+    flex-wrap:wrap;
+    align-items:flex-start;
+  }
+  .menu-toggle{
+    display:inline-flex;
+  }
+  nav{
+    width:100%;
+    display:none;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    padding-top:4px;
+  }
+  nav.open{display:flex}
+  nav a{
+    width:100%;
+    padding:10px 12px;
+  }
+  .brand img{
+    width:56px;
+    height:56px;
+  }
+  .brand h1{
+    font-size:1rem;
+  }
+  .brand p{
+    font-size:.8rem;
+    white-space:normal;
+  }
+  .hero{
+    min-height:auto;
+    padding:112px 20px 64px;
+  }
+  .hero-grid, .highlights{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="nav-wrap">
+      <div class="brand">
+        <img src="logo-audifast.png" alt="Logo AUDIFAST">
+        <div class="brand-copy">
+          <h1>AUDIFAST ESTUDIO CONTABLE</h1>
+          <p>Servicios contables, tributarios y empresariales a nivel nacional</p>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle">☰ Menú</button>
+      <nav id="mainNav">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="hero" id="inicio">
+    <div class="hero-inner">
+      <div>
+        <span class="badge">Cobertura nacional y atención profesional</span>
+        <h2>Contabilidad nivel empresa top real.</h2>
+        <p>
+          En AUDIFAST ESTUDIO CONTABLE brindamos servicios contables, tributarios y empresariales a nivel nacional para emprendedores, negocios y empresas que requieren respaldo profesional, criterio técnico y una imagen corporativa sólida. Nuestro objetivo es ayudar a cada cliente a cumplir, organizarse mejor y crecer con información clara.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contacto">Solicitar información</a>
+          <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-grid">
+          <div class="hero-stat"><strong>SUNAT</strong><span>Soporte preventivo y acompañamiento tributario permanente.</span></div>
+          <div class="hero-stat"><strong>SIRE - PLE</strong><span>Control documental y libros electrónicos con orden técnico.</span></div>
+          <div class="hero-stat"><strong>Servicio online</strong><span>Atención remota para clientes de distintas regiones del país.</span></div>
+          <div class="hero-stat"><strong>Imagen corporativa</strong><span>Presencia moderna, clara y profesional para proyectar confianza.</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="audio-strip">
+    <div class="audio-card">
+      <div>
+        <h3>Audio institucional</h3>
+        <p>Reproductor de audio únicamente. Sin video visible.</p>
+      </div>
+      <audio controls preload="none">
+        <source src="audio-institucional.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+      </audio>
+    </div>
+  </div>
+
+  <main>
+    <section>
+      <div class="section-head">
+        <span class="kicker">¿Quiénes somos?</span>
+        <h3>Una firma contable que proyecta respaldo profesional en todo el Perú.</h3>
+        <p>
+          Somos un estudio orientado a brindar soluciones contables, tributarias y empresariales con una visión moderna, formal y estratégica. En AUDIFAST entendemos que la contabilidad debe transmitir control, cumplimiento y confianza; por eso trabajamos para que cada cliente reciba no solo un servicio técnico correcto, sino también una experiencia profesional clara, ordenada y bien presentada.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <p>
+            Atendemos a empresas de distintos rubros, profesionales y emprendimientos que necesitan ordenar su gestión, fortalecer sus procesos y cumplir adecuadamente con sus obligaciones. Nuestra propuesta combina servicio técnico, comunicación sencilla y acompañamiento cercano para convertir la contabilidad en una herramienta de organización y crecimiento.
+          </p>
+          <div class="highlights">
+            <div class="highlight"><strong>Seriedad</strong><br>Presentamos cada servicio con imagen corporativa sólida y profesional.</div>
+            <div class="highlight"><strong>Confianza</strong><br>Trabajamos con reserva, compromiso y seguimiento responsable.</div>
+            <div class="highlight"><strong>Orden</strong><br>Priorizamos estructura, claridad documental y cumplimiento oportuno.</div>
+            <div class="highlight"><strong>Cobertura</strong><br>Brindamos atención y soporte a nivel nacional.</div>
+          </div>
+        </div>
+        <div class="panel reveal">
+          <h3 style="margin-top:0;color:var(--navy)">Lo que queremos ser</h3>
+          <p>
+            Queremos consolidarnos como una firma referente en servicios contables, tributarios y empresariales a nivel nacional, reconocida por su calidad de atención, criterio técnico y proyección corporativa. Buscamos construir relaciones duraderas con clientes que valoren una gestión seria, organizada y enfocada en resultados.
+          </p>
+          <p>
+            Nuestra meta es convertirnos en un aliado estratégico que inspire confianza desde el primer contacto y acompañe al cliente en el desarrollo sostenible de su negocio.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="section-head">
+        <span class="kicker">Servicios</span>
+        <h3>Una cartera amplia para responder a necesidades contables, tributarias y empresariales.</h3>
+        <p>
+          Hemos reforzado esta sección con una propuesta más completa. Cada solución está pensada para atender obligaciones operativas, tributarias, organizacionales y estratégicas, con una presentación visual sólida y una comunicación clara para el cliente.
+        </p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Contabilidad de diferentes rubros</h4><p>Gestión contable integral por actividad económica.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Libros electrónicos (SIRE - PLE)</h4><p>Registro y cumplimiento electrónico con control documental.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Declaraciones tributarias</h4><p>Presentación puntual y seguimiento ante SUNAT.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Servicios fiscales</h4><p>Planeamiento y control tributario con visión preventiva.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Asesoría y consultoría</h4><p>Soporte estratégico para decisiones empresariales.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Recursos humanos</h4><p>Planillas, contratos y obligaciones laborales.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Finanzas y economía</h4><p>Análisis financiero y soporte para mejores decisiones.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Constitución de empresas</h4><p>Formalización y acompañamiento en la puesta en marcha.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Facturación personalizada</h4><p>Comprobantes adaptados al flujo de cada negocio.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Servicio online</h4><p>Atención remota y acompañamiento continuo.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Capacitaciones</h4><p>Entrenamiento práctico para equipos y contribuyentes.</p></div></article>
+        <article class="service-card reveal"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80" alt=""><div class="service-body"><h4>Auditoría</h4><p>Revisión, control y evaluación de procesos.</p></div></article>
+      </div>
+    </section>
+
+    <section id="nosotros">
+      <div class="section-head">
+        <span class="kicker">Nosotros</span>
+        <h3>Apoyo contable peruano con énfasis en prevención, cumplimiento y acompañamiento frente a SUNAT.</h3>
+        <p>
+          En AUDIFAST trabajamos para que cada cliente tenga mayor tranquilidad frente a sus obligaciones. Nuestro enfoque combina orden documental, revisión técnica, seguimiento constante y asesoría útil para sostener una gestión empresarial más segura.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <p>
+            Acompañamos a clientes que necesitan apoyo en declaraciones, libros electrónicos, revisión de procesos, organización de información y prevención de contingencias tributarias. Nuestro valor está en transformar tareas complejas en procedimientos claros, bien ejecutados y alineados con la realidad del negocio.
+          </p>
+          <p>
+            Buscamos que cada empresa sienta que cuenta con un respaldo profesional serio, moderno y confiable.
+          </p>
+        </div>
+        <div class="panel reveal">
+          <img src="https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&w=1200&q=80" alt="Contabilidad y apoyo frente a SUNAT">
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="section-head">
+        <span class="kicker">Contacto</span>
+        <h3>Canales de atención para consultas, cotizaciones, redes sociales y solicitudes de servicio.</h3>
+        <p>
+          Esta sección concentra toda la información de contacto con una imagen más profesional y completa. Incluye dirección, teléfono, correo, formulario, mapa y accesos directos a redes sociales, incorporando además el canal de WhatsApp y el WhatsApp de contacto.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="contact-list">
+            <div class="contact-item"><strong>Dirección</strong>Jr. Ayacucho 920 Oficina 33 (Tercer piso) - Trujillo</div>
+            <div class="contact-item"><strong>Celular / WhatsApp</strong>993 043 622</div>
+            <div class="contact-item"><strong>Correo electrónico</strong>contabilidad@audifast.com</div>
+            <div class="contact-item"><strong>Cobertura</strong>Brindamos servicios contables, tributarios y empresariales a nivel nacional.</div>
+          </div>
+          <div class="socials">
+            <a class="fb" href="https://www.facebook.com/AudifastEIRL" target="_blank"><span class="icon">f</span>Facebook</a>
+            <a class="ig" href="https://instagram.com/audifast_estudiocontable" target="_blank"><span class="icon">◎</span>Instagram</a>
+            <a class="tt" href="https://tiktok.com/@audifasteirl" target="_blank"><span class="icon">♪</span>TikTok</a>
+            <a class="wa" href="https://wa.me/51993043622" target="_blank"><span class="icon">W</span>WhatsApp</a>
+            <a class="wa" href="https://whatsapp.com/channel/0029VbCXsgB6WaKeciobSP35" target="_blank"><span class="icon">W</span>Canal WhatsApp</a>
+          </div>
+          <iframe class="map" src="https://www.google.com/maps?q=Jr.%20Ayacucho%20920%20Oficina%2033%20Trujillo&output=embed" loading="lazy"></iframe>
+        </div>
+        <div class="panel reveal">
+          <form action="mailto:contabilidad@audifast.com" method="post" enctype="text/plain">
+            <input type="text" name="Nombre" placeholder="Nombre completo" required>
+            <input type="email" name="Correo" placeholder="Correo electrónico" required>
+            <input type="text" name="Asunto" placeholder="Asunto" required>
+            <textarea name="Mensaje" placeholder="Cuéntanos qué servicio necesitas o qué consulta deseas realizar." required></textarea>
+            <button class="btn btn-primary submit" type="submit">Enviar solicitud</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="floating">
+    <a class="float-wa" href="https://wa.me/51993043622" target="_blank">W</a>
+    <a class="float-top" href="#inicio">↑</a>
+  </div>
+
+  <footer>
+    <div class="footer-wrap">
+      <div>
+        <strong>AUDIFAST ESTUDIO CONTABLE</strong><br>
+        Servicios contables, tributarios y empresariales a nivel nacional
+      </div>
+      <div>
+        Jr. Ayacucho 920 Oficina 33 (Tercer piso) - Trujillo<br>
+        contabilidad@audifast.com · 993 043 622
+      </div>
+    </div>
+  </footer>
+
+<script>
+const toggle = document.getElementById('menuToggle');
+const nav = document.getElementById('mainNav');
+toggle.addEventListener('click', () => nav.classList.toggle('open'));
+document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('show'); }
+  });
+},{threshold:.12});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
